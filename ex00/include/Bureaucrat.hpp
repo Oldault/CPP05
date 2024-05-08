@@ -6,7 +6,7 @@
 /*   By: oldault <oldault@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 13:39:57 by oldault           #+#    #+#             */
-/*   Updated: 2024/05/08 10:02:50 by oldault          ###   ########.fr       */
+/*   Updated: 2024/05/08 10:21:30 by oldault          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 #include "Colors.h"
 #include <iostream>
 #include <string>
+#include <sstream>
+
+#define SSTR( x ) static_cast< std::ostringstream & >( \
+        ( std::ostringstream() << std::dec << x ) ).str()
+
 
 class Bureaucrat
 {
@@ -31,3 +36,6 @@ class Bureaucrat
     void  incrementGrade(unsigned int amount);
     void  decrementGrade(unsigned int amount);
 };
+
+std::ostream& operator<<(std::ostream& os, const Bureaucrat& b);
+

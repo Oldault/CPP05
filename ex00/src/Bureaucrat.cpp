@@ -6,7 +6,7 @@
 /*   By: oldault <oldault@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 13:39:44 by oldault           #+#    #+#             */
-/*   Updated: 2024/05/08 10:03:39 by oldault          ###   ########.fr       */
+/*   Updated: 2024/05/08 10:22:30 by oldault          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,9 @@ void  Bureaucrat::decrementGrade( unsigned int amount )
   _grade = _grade + amount;
 }
 
-    
+
+std::ostream& operator<<(std::ostream& os, const Bureaucrat& b)
+{
+  os << b.getName() << ", bureaucrat grade " << b.getGrade();
+  return os;
+}

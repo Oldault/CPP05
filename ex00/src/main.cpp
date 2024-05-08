@@ -6,7 +6,7 @@
 /*   By: oldault <oldault@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 13:39:17 by oldault           #+#    #+#             */
-/*   Updated: 2024/05/08 10:05:36 by oldault          ###   ########.fr       */
+/*   Updated: 2024/05/08 10:23:14 by oldault          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int main()
 {
-  Bureaucrat James("James", 20);
+  Bureaucrat MyBureaucrat("James", 20);
 
-  std::cout << James.getName() << std::endl;
-  std::cout << James.getGrade() << std::endl;
-  James.decrementGrade(20);
-  James.incrementGrade(10);
-  std::cout << James.getGrade() << std::endl;
+  std::cout << MyBureaucrat << std::endl;
+  MyBureaucrat.decrementGrade(20);
+  std::cout << MyBureaucrat << std::endl;
+  MyBureaucrat.incrementGrade(10);
+  std::cout << MyBureaucrat << std::endl;
   
   return 0;
 }
