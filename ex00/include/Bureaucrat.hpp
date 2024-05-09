@@ -6,7 +6,7 @@
 /*   By: oldault <oldault@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 13:39:57 by oldault           #+#    #+#             */
-/*   Updated: 2024/05/09 10:25:35 by oldault          ###   ########.fr       */
+/*   Updated: 2024/05/09 10:53:25 by oldault          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,13 @@ class Bureaucrat : public std::exception
     unsigned int _grade;
 
   public:
-    Bureaucrat(const std::string& name, unsigned int grade);
+    Bureaucrat(const std::string& name, int grade);
     ~Bureaucrat( void ) throw();
     
     const std::string getName( void ) const;
-    unsigned int getGrade( void ) const;
-    void  incrementGrade(unsigned int amount);
-    void  decrementGrade(unsigned int amount);
+    int getGrade( void ) const;
+    void  incrementGrade(int amount);
+    void  decrementGrade(int amount);
 };
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& b);
-

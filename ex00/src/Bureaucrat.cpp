@@ -6,13 +6,13 @@
 /*   By: oldault <oldault@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 13:39:44 by oldault           #+#    #+#             */
-/*   Updated: 2024/05/09 10:22:16 by oldault          ###   ########.fr       */
+/*   Updated: 2024/05/09 10:53:38 by oldault          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat(const std::string& name, unsigned int grade) :
+Bureaucrat::Bureaucrat(const std::string& name, int grade) :
   _name(name)
 {
   std::cout << FGRN("Trying to create a Bureaucrat named ")
@@ -22,7 +22,7 @@ Bureaucrat::Bureaucrat(const std::string& name, unsigned int grade) :
   if (grade < HIGHEST_GRADE) {
     throw GradeTooHighException();
   } else if (grade > LOWEST_GRADE) {
-    throw GradeTooHighException();
+    throw GradeTooLowException();
   }
   _grade = grade;
   std::cout << FGRN("\t↳ Bureaucrat " << BOLD( << _name << )) << FGRN(" Created.") << std::endl;
@@ -43,12 +43,12 @@ const std::string Bureaucrat::getName( void ) const
   return _name;
 }
 
-unsigned int Bureaucrat::getGrade( void ) const
+int Bureaucrat::getGrade( void ) const
 {
   return _grade;
 }
 
-void  Bureaucrat::incrementGrade( unsigned int amount )
+void  Bureaucrat::incrementGrade( int amount )
 {
   if (static_cast<int>(_grade - amount) < HIGHEST_GRADE) {
     throw GradeTooHighException();
@@ -60,7 +60,7 @@ void  Bureaucrat::incrementGrade( unsigned int amount )
   _grade -= amount;
 }
 
-void  Bureaucrat::decrementGrade( unsigned int amount )
+void  Bureaucrat::decrementGrade( int amount )
 {
   if (static_cast<int>(_grade + amount) > LOWEST_GRADE) {
     throw GradeTooLowException();
