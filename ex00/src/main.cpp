@@ -6,7 +6,7 @@
 /*   By: oldault <oldault@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 13:39:17 by oldault           #+#    #+#             */
-/*   Updated: 2024/05/08 10:23:14 by oldault          ###   ########.fr       */
+/*   Updated: 2024/05/09 08:56:59 by oldault          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,44 @@
 
 int main()
 {
-  Bureaucrat MyBureaucrat("James", 20);
+  try
+  {
+    Bureaucrat MyBureaucrat2("Lenny", 160);
+    std::cout << MyBureaucrat2 << std::endl;
+  }
+  catch(const std::exception& e)
+  {
+    std::cerr << "Exception caught: " << e.what() << '\n';
+  }
+  
+  try
+  {
+    Bureaucrat MyBureaucrat1("James", 20);
+    std::cout << MyBureaucrat1 << std::endl;
+    MyBureaucrat1.incrementGrade(15);
+    std::cout << MyBureaucrat1 << std::endl;
+    MyBureaucrat1.incrementGrade(10);
+    std::cout << MyBureaucrat1 << std::endl;
+  }
+  catch(const std::exception& e)
+  {
+    std::cerr << "Exception caught: " << e.what() << '\n';
+  }
+  
 
-  std::cout << MyBureaucrat << std::endl;
-  MyBureaucrat.decrementGrade(20);
-  std::cout << MyBureaucrat << std::endl;
-  MyBureaucrat.incrementGrade(10);
-  std::cout << MyBureaucrat << std::endl;
+  try
+  {
+    Bureaucrat MyBureaucrat3("Clore", 100);
+    std::cout << MyBureaucrat3 << std::endl;
+    MyBureaucrat3.decrementGrade(20);
+    std::cout << MyBureaucrat3 << std::endl;
+    MyBureaucrat3.decrementGrade(40);
+    std::cout << MyBureaucrat3 << std::endl;
+  }
+  catch(const std::exception& e)
+  {
+    std::cerr << "Exception caught: " << e.what() << '\n';
+  }
   
   return 0;
 }
