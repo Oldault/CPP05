@@ -6,24 +6,22 @@
 /*   By: oldault <oldault@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 13:39:57 by oldault           #+#    #+#             */
-/*   Updated: 2024/05/09 08:43:22 by oldault          ###   ########.fr       */
+/*   Updated: 2024/05/09 10:25:35 by oldault          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include "Colors.h"
+#include "Exceptions.hpp"
+
 #include <iostream>
 #include <string>
 #include <sstream>
-#include <exception>
 #include <stdexcept>
 
 # define HIGHEST_GRADE 1
 # define LOWEST_GRADE 150
-
-#define SSTR( x ) static_cast< std::ostringstream & >( \
-        ( std::ostringstream() << std::dec << x ) ).str()
 
 class Bureaucrat : public std::exception
 {
