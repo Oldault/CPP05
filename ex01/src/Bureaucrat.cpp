@@ -6,11 +6,12 @@
 /*   By: oldault <oldault@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 13:39:44 by oldault           #+#    #+#             */
-/*   Updated: 2024/05/09 10:53:38 by oldault          ###   ########.fr       */
+/*   Updated: 2024/05/10 11:14:33 by oldault          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 Bureaucrat::Bureaucrat(const std::string& name, int grade) :
   _name(name)
@@ -70,6 +71,17 @@ void  Bureaucrat::decrementGrade( int amount )
   << std::endl;
 
   _grade += amount;
+}
+
+bool  Bureaucrat::signForm(Form& form)
+{
+  if (_grade > form.getSignGrade()) {
+    std::cerr << FRED(BOLD( << _name << )) << FRED(", couldn't sign \"") << FRED(UNDL( << form.getFormName() << )) << FRED("\". Because: ")<< std::endl;
+    throw GradeTooLowException();
+    return false;
+  }
+  std::cout << FGRN(BOLD( << _name << )) << FGRN(", successfully signed ") << FGRN(UNDL( << form.getFormName() << )) << std::endl;
+  return true;
 }
 
 

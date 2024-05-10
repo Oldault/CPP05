@@ -6,17 +6,18 @@
 /*   By: oldault <oldault@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 21:44:23 by oldault           #+#    #+#             */
-/*   Updated: 2024/05/10 10:16:03 by oldault          ###   ########.fr       */
+/*   Updated: 2024/05/10 11:15:09 by oldault          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
+#include "Bureaucrat.hpp"
 #include <iomanip>
 #include <string>
 
 #define BOLDB(text) "\033[1m" << text << "\033[0m"
 
-Form::Form(const std::string formName, const int signGrade, const int execGrade) :
+Form::Form(const std::string& formName, int signGrade, int execGrade) :
   _formName(formName),
   _signed(false),
   _signGrade(signGrade),
@@ -25,7 +26,7 @@ Form::Form(const std::string formName, const int signGrade, const int execGrade)
   return ;
 }
 
-Form::~Form()
+Form::~Form() throw()
 {
   return ;
 }
@@ -50,12 +51,11 @@ int Form::getExecGrade( void ) const
   return _execGrade;
 }
 
-void  Form::beSigned(const Bureaucrat& b)
+void  Form::beSigned(Bureaucrat& b)
 {
-  if (b.getGrade() > _signGrade) {
-    throw GradeTooLowException();
-  }
-  _signed = true;
+  _signed = b.signForm(*this);
+
+  return ;
 }
 
 
@@ -83,12 +83,12 @@ std::ostream& formatTable(std::ostream& os, const std::string& left, int right, 
 
 std::ostream& operator<<(std::ostream& os, const Form& form)
 {
-  os << "\t+--------------------------------------+\n";
+  os << "\n\t+--------------------------------------+\n";
   formatTable(os, "Form Name:", formatText(form.getFormName()), 25);
   formatTable(os, "Form is signed:", (form.isSigned() ? "✅" : "❌"), 21);
   formatTable(os, "Signing Grade:", form.getSignGrade(), 21);
   formatTable(os, "Execution Grade:", form.getExecGrade(), 19);
-  os << "\t+--------------------------------------+" << std::endl;
+  os << "\t+--------------------------------------+\n\n";
 
   return os;
 }
