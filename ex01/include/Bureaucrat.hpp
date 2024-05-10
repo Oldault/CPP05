@@ -6,7 +6,7 @@
 /*   By: oldault <oldault@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 13:39:57 by oldault           #+#    #+#             */
-/*   Updated: 2024/05/09 10:53:25 by oldault          ###   ########.fr       */
+/*   Updated: 2024/05/10 10:01:09 by oldault          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 
 # define HIGHEST_GRADE 1
 # define LOWEST_GRADE 150
+
+#define SSTR( x ) static_cast< std::ostringstream & >( \( std::ostringstream() << std::dec << x ) ).str()
 
 class Bureaucrat : public std::exception
 {
