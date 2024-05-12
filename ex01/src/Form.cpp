@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oldault <oldault@student.42.fr>            +#+  +:+       +#+        */
+/*   By: svolodin <svolodin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 21:44:23 by oldault           #+#    #+#             */
-/*   Updated: 2024/05/10 11:15:09 by oldault          ###   ########.fr       */
+/*   Updated: 2024/05/12 10:02:01 by svolodin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,36 +59,45 @@ void  Form::beSigned(Bureaucrat& b)
 }
 
 
-std::string formatText(const std::string& text)
+std::string formatTextF(const std::string& text)
 {
 	unsigned int maxLen = 18;
   return text.size() > maxLen ? text.substr(0, maxLen - 1) + '.' : text;
 }
 
-std::ostream& formatTable(std::ostream& os, const std::string& left, const std::string& right, int w)
+std::ostream& formatTableF(std::ostream& os, const std::string& left, const std::string& right, int w)
 {
-  os << "\t| " << std::left << std::setw(5) << BOLDB(left)
-    << std::right << std::setw(w) << right << " |" << std::endl;
+  os << "\t| " << std::left << std::setw(5) << BOLD(left)
+    << std::right << std::setw(w) << FCYN(right) << " |" << std::endl;
   
   return os;
 }
 
-std::ostream& formatTable(std::ostream& os, const std::string& left, int right, int w)
+std::ostream& formatTableF(std::ostream& os, const std::string& left, int right, int w)
 {
-  os << "\t| " << std::left << std::setw(5) << BOLDB(left)
-    << std::right << std::setw(w) << right << " |" << std::endl;
+  os << "\t| " << std::left << std::setw(5) << BOLD(left)
+    << std::right << std::setw(w) << FCYN(right) << " |" << std::endl;
   
+  return os;
+}
+
+std::ostream& printHeaderF(std::ostream& os, std::string title)
+{
+  os << "\t+-------------------------------------+\n";
+  os << "\t|\t" << FCYN(BOLD(title)) << "\t\t      |\n";
+  os << "\t+-------------------------------------+\n";
+
   return os;
 }
 
 std::ostream& operator<<(std::ostream& os, const Form& form)
 {
-  os << "\n\t+--------------------------------------+\n";
-  formatTable(os, "Form Name:", formatText(form.getFormName()), 25);
-  formatTable(os, "Form is signed:", (form.isSigned() ? "✅" : "❌"), 21);
-  formatTable(os, "Signing Grade:", form.getSignGrade(), 21);
-  formatTable(os, "Execution Grade:", form.getExecGrade(), 19);
-  os << "\t+--------------------------------------+\n\n";
+  printHeaderF(os, "Data about Form");
+  formatTableF(os, "Form Name:", formatTextF(form.getFormName()), 34);
+  formatTableF(os, "Form is signed:", (form.isSigned() ? "✅" : "❌"), 30);
+  formatTableF(os, "Signing Grade:", form.getSignGrade(), 30);
+  formatTableF(os, "Execution Grade:", form.getExecGrade(), 28);
+  os << "\t+-------------------------------------+\n";
 
   return os;
 }

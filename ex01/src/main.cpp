@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oldault <oldault@student.42.fr>            +#+  +:+       +#+        */
+/*   By: svolodin <svolodin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 13:39:17 by oldault           #+#    #+#             */
-/*   Updated: 2024/05/11 11:03:19 by oldault          ###   ########.fr       */
+/*   Updated: 2024/05/12 10:05:19 by svolodin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 int main()
 {
   /* Bureaucrats: */
-  Bureaucrat myBureaucrat("James", 20);
-  std::cout << myBureaucrat << std::endl;
-  Bureaucrat myBureaucrat2("Salomon", 2);
-  std::cout << myBureaucrat2 << std::endl;
+  Bureaucrat midLevelBur("James", 20);
+  std::cout << midLevelBur << std::endl;
+  Bureaucrat highLevelBur("Salomon", 2);
+  std::cout << highLevelBur << std::endl;
 
   /* Forms: */
   Form form1("Fire Anne Hidalgo", 5, 100);
@@ -27,7 +27,7 @@ int main()
   
   /* Signing Attempts: */
   try {
-    form1.beSigned(myBureaucrat);
+    form1.beSigned(midLevelBur);
   }
   catch (const std::exception& e) {
     std::cerr << e.what() << "\n\n";
@@ -36,7 +36,7 @@ int main()
 
 
   try {
-    form1.beSigned(myBureaucrat2);
+    form1.beSigned(highLevelBur);
   }
   catch (const std::exception& e) {
     std::cerr << e.what() << "\n\n";
