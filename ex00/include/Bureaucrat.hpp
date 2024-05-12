@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oldault <oldault@student.42.fr>            +#+  +:+       +#+        */
+/*   By: svolodin <svolodin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 13:39:57 by oldault           #+#    #+#             */
-/*   Updated: 2024/05/09 10:53:25 by oldault          ###   ########.fr       */
+/*   Updated: 2024/05/12 07:55:50 by svolodin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "Colors.h"
+#include "Colors.hpp"
 #include "Exceptions.hpp"
 
 #include <iostream>

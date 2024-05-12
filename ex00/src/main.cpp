@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oldault <oldault@student.42.fr>            +#+  +:+       +#+        */
+/*   By: svolodin <svolodin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 13:39:17 by oldault           #+#    #+#             */
-/*   Updated: 2024/05/09 10:54:54 by oldault          ###   ########.fr       */
+/*   Updated: 2024/05/12 09:44:40 by svolodin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int main()
     std::cout << MyBureaucrat2 << std::endl;
 
     MyBureaucrat2.incrementGrade(10);
-    std::cout << MyBureaucrat2 << std::endl;
+    std::cout << MyBureaucrat2 << std::endl; //doesnt print
   }
   catch(const std::exception& e) {
     std::cerr << FRED("Exception caught: ") << e.what() << "\n\n";
@@ -62,7 +62,7 @@ int main()
     std::cout << MyBureaucrat21 << std::endl;
 
     MyBureaucrat21.decrementGrade(40);
-    std::cout << MyBureaucrat21 << std::endl;
+    std::cout << MyBureaucrat21 << std::endl; //doesnt print either
   }
   catch(const std::exception& e) {
     std::cerr << FRED("Exception caught: ") << e.what() << "\n\n";
