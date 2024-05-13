@@ -1,58 +1,64 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
+/*   RobotomyRequestForm.cpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oldault <oldault@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 10:24:33 by oldault           #+#    #+#             */
-/*   Updated: 2024/05/11 14:23:51 by oldault          ###   ########.fr       */
+/*   Updated: 2024/05/11 14:24:36 by oldault          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
 #include "Bureaucrat.hpp"
 #include "Exceptions.hpp"
-#include <fstream>
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string target) :
-  AForm("shrubbery creation", 145, 137),
+#include <cstdlib>
+#include <ctime>
+
+RobotomyRequestForm::RobotomyRequestForm(std::string target) :
+  AForm("robotomy request", 72, 45),
   _target(target)
-{ 
-  return ;
-}
-
-ShrubberyCreationForm::~ShrubberyCreationForm() throw()
 {
-  return ;
-}
-
-void  growShrubs(const std::string& target)
-{
-  std::ofstream shrubFile;
-  shrubFile.open(target + "_shrubbery");
-
-  shrubFile << "🌳🌴🌲\n";
-  shrubFile.close();
-
-  return ;
-}
-
-void  ShrubberyCreationForm::beSigned(Bureaucrat& b)
-{
-  b.signForm(*this);
+  srand(time(0));
   
   return ;
 }
 
-void  ShrubberyCreationForm::execute(const Bureaucrat& b)
+RobotomyRequestForm::~RobotomyRequestForm() throw()
+{
+  return ;
+}
+
+void  drillAway(const std::string& target)
+{
+  std::cout << BOLD(ITAL("💥 BRRRrrrrriiiiiiin zing Zing 💥")) << std::endl;
+  if (rand() <= RAND_MAX / 2) {
+    std::cout << BOLD( << target << ) << " has been Robotomized successfully 👍🏻" << std::endl;
+  } else {
+    std::cout << BOLD( << target << ) << " died during Robotomization 🫡" << std::endl;
+  }
+
+  return ;
+}
+
+void  RobotomyRequestForm::beSigned(Bureaucrat& b)
+{
+  b.signForm(*this);
+    
+  return ;
+}
+
+void RobotomyRequestForm::execute(const Bureaucrat& b)
 {
   if (!isSigned()) {
     throw FormNotSignedException();
   } else if (!canBeExecuted(b)) {
     throw GradeTooLowException();
   }
-  growShrubs(_target);
-  
+
+  drillAway(_target);
+
   return ;
 }

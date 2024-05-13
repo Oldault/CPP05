@@ -56,6 +56,18 @@ void AForm::setToSigned( void )
   _signed = true;
 }
 
+bool  AForm::canBeSigned(Bureaucrat& b)
+{
+  return (b.getGrade() >= getSignGrade());
+}
+
+bool  AForm::canBeExecuted(const Bureaucrat& b)
+{
+  return (b.getGrade() >= getExecGrade());
+}
+
+
+
 std::string AFormatText(const std::string& text)
 {
 	unsigned int maxLen = 18;

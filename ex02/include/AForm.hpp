@@ -6,7 +6,7 @@
 /*   By: oldault <oldault@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 10:57:20 by oldault           #+#    #+#             */
-/*   Updated: 2024/05/11 11:21:49 by oldault          ###   ########.fr       */
+/*   Updated: 2024/05/11 14:20:45 by oldault          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,12 @@ class AForm : public std::exception
     int getExecGrade( void ) const;
 
     void  setToSigned( void );
+
+    bool  canBeSigned(Bureaucrat& b);
+    bool  canBeExecuted(const Bureaucrat& b);
+    
     virtual void  beSigned(Bureaucrat& b) = 0;
+    virtual void  execute(const Bureaucrat& b) = 0;
 };
 
 std::ostream& operator<<(std::ostream& os, const AForm& form);

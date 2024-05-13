@@ -1,58 +1,59 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
+/*   PresidentialPardonForm.cpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oldault <oldault@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 10:24:33 by oldault           #+#    #+#             */
-/*   Updated: 2024/05/11 14:23:51 by oldault          ###   ########.fr       */
+/*   Updated: 2024/05/11 14:25:21 by oldault          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ShrubberyCreationForm.hpp"
+#include "PresidentialPardonForm.hpp"
 #include "Bureaucrat.hpp"
 #include "Exceptions.hpp"
-#include <fstream>
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string target) :
-  AForm("shrubbery creation", 145, 137),
+#include <cstdlib>
+#include <ctime>
+
+PresidentialPardonForm::PresidentialPardonForm(std::string target) :
+  AForm("presidential pardon", 25, 5),
   _target(target)
-{ 
+{
+  srand(time(0));
+  
   return ;
 }
 
-ShrubberyCreationForm::~ShrubberyCreationForm() throw()
+PresidentialPardonForm::~PresidentialPardonForm() throw()
 {
   return ;
 }
 
-void  growShrubs(const std::string& target)
+void  pardon(const std::string& target)
 {
-  std::ofstream shrubFile;
-  shrubFile.open(target + "_shrubbery");
-
-  shrubFile << "🌳🌴🌲\n";
-  shrubFile.close();
+  std::cout << BOLD( << target << ) << " has been pardonned by Zaphod Beeblebrox" << std::endl;
 
   return ;
 }
 
-void  ShrubberyCreationForm::beSigned(Bureaucrat& b)
+void  PresidentialPardonForm::beSigned(Bureaucrat& b)
 {
   b.signForm(*this);
   
   return ;
 }
 
-void  ShrubberyCreationForm::execute(const Bureaucrat& b)
+void  PresidentialPardonForm::execute(const Bureaucrat& b)
 {
   if (!isSigned()) {
     throw FormNotSignedException();
   } else if (!canBeExecuted(b)) {
     throw GradeTooLowException();
   }
-  growShrubs(_target);
-  
+
+  pardon(_target);
+
   return ;
 }
