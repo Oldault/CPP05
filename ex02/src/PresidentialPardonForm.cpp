@@ -6,7 +6,7 @@
 /*   By: svolodin <svolodin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 10:24:33 by oldault           #+#    #+#             */
-/*   Updated: 2024/05/14 15:58:46 by svolodin         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:17:58 by svolodin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,22 +39,8 @@ void  pardon(const std::string& target)
   return ;
 }
 
-void  PresidentialPardonForm::beSigned(Bureaucrat& b)
+void  PresidentialPardonForm::performExecuteAction(const Bureaucrat& b)
 {
-  if (b.signForm(*this)) {
-    setToSigned();
-  }
-
-  return ;
-}
-
-void  PresidentialPardonForm::execute(const Bureaucrat& b)
-{
-  if (!isSigned()) {
-    throw FormNotSignedException();
-  } else if (!canBeExecuted(b)) {
-    throw GradeTooLowException();
-  }
   std::cout << FGRN(BOLD(b.getName()))
   << FGRN(", is now executing ")
   << FGRN(UNDL(getFormName())) << std::endl;

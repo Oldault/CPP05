@@ -21,6 +21,11 @@ AForm::AForm(const std::string& formName, int signGrade, int execGrade) :
   _signGrade(signGrade),
   _execGrade(execGrade)
 {
+  std::cout << FGRN("Form named ") << FGRN(BOLD(_formName))
+  << FGRN(", sign grade: ") << FGRN(UNDL(_signGrade))
+  << FGRN(", exec grade: ") << FGRN(UNDL(_execGrade))
+  << FGRN(" Created.") << std::endl;
+
   return ;
 }
 
@@ -62,6 +67,23 @@ bool  AForm::canBeSigned(Bureaucrat& b)
 bool  AForm::canBeExecuted(const Bureaucrat& b)
 {
   return (b.getGrade() >= getExecGrade());
+}
+
+void AForm::beSigned(Bureaucrat& b)
+{
+  if (b.signForm(*this)) {
+    setToSigned();
+  }
+}
+
+void AForm::execute(const Bureaucrat& b)
+{
+  if (!isSigned()) {
+    throw FormNotSignedException();
+  } else if (!canBeExecuted(b)) {
+    throw GradeTooLowException();
+  }
+  performExecuteAction(b);
 }
 
 

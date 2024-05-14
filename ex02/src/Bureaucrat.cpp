@@ -6,7 +6,7 @@
 /*   By: svolodin <svolodin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 13:39:44 by oldault           #+#    #+#             */
-/*   Updated: 2024/05/14 15:40:18 by svolodin         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:04:24 by svolodin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,6 @@ Bureaucrat::Bureaucrat(const std::string& name, int grade) :
 
 Bureaucrat::~Bureaucrat( void ) throw()
 {
-  // std::cout << FYEL("Bureaucrat ") << FYEL(BOLD( << _name << ))
-  // << FYEL(" was destroyed 😇") << std::endl;
-
   return ;
 }
 

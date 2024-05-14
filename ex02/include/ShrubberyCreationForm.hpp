@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oldault <oldault@student.42.fr>            +#+  +:+       +#+        */
+/*   By: svolodin <svolodin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 10:24:49 by oldault           #+#    #+#             */
-/*   Updated: 2024/05/11 14:07:00 by oldault          ###   ########.fr       */
+/*   Updated: 2024/05/14 17:19:56 by svolodin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AForm.hpp"
 
 class ShrubberyCreationForm : 
-  virtual public AForm
+  public AForm
 {
   private:
     const std::string _target;
@@ -22,6 +22,6 @@ class ShrubberyCreationForm :
     ShrubberyCreationForm(std::string target);
     ~ShrubberyCreationForm() throw();
 
-    void  beSigned(Bureaucrat& b);
-    void  execute(const Bureaucrat& b);
+  protected:
+    virtual void performExecuteAction(const Bureaucrat& b);
 };
