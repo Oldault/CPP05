@@ -6,7 +6,7 @@
 /*   By: svolodin <svolodin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 10:24:49 by oldault           #+#    #+#             */
-/*   Updated: 2024/05/14 17:19:54 by svolodin         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:34:15 by svolodin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,5 @@ class RobotomyRequestForm :
     ~RobotomyRequestForm() throw();
 
   protected:
-    virtual void performExecuteAction(const Bureaucrat& b);
+    virtual void performExecuteAction(Bureaucrat& b);
 };

@@ -6,7 +6,7 @@
 /*   By: svolodin <svolodin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 10:24:33 by oldault           #+#    #+#             */
-/*   Updated: 2024/05/14 17:17:58 by svolodin         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:35:32 by svolodin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,9 @@ void  pardon(const std::string& target)
   return ;
 }
 
-void  PresidentialPardonForm::performExecuteAction(const Bureaucrat& b)
+void  PresidentialPardonForm::performExecuteAction(Bureaucrat& b)
 {
-  std::cout << FGRN(BOLD(b.getName()))
-  << FGRN(", is now executing ")
-  << FGRN(UNDL(getFormName())) << std::endl;
-  
+  (void)b;
   pardon(_target);
 
   return ;

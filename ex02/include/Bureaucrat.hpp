@@ -6,7 +6,7 @@
 /*   By: svolodin <svolodin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 13:39:57 by oldault           #+#    #+#             */
-/*   Updated: 2024/05/14 15:37:20 by svolodin         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:30:19 by svolodin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ class Bureaucrat : public std::exception
     void  decrementGrade(int amount);
 
     bool  signForm(AForm& form);
+    bool  executeForm(AForm& form);
 };
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& b);

@@ -6,7 +6,7 @@
 /*   By: svolodin <svolodin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 13:39:44 by oldault           #+#    #+#             */
-/*   Updated: 2024/05/14 16:04:24 by svolodin         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:31:35 by svolodin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,17 @@ bool  Bureaucrat::signForm(AForm& form)
     throw GradeTooLowException();
   }
   std::cout << FGRN(BOLD(_name)) << FGRN(", successfully signed ") << FGRN(UNDL(form.getFormName())) << std::endl;
+  return true;
+}
+
+bool  Bureaucrat::executeForm(AForm& form)
+{
+  if (_grade > form.getExecGrade())
+  {
+    std::cerr << FRED(BOLD(_name)) << FRED(", couldn't execute \"") << FRED(UNDL( form.getFormName())) << FRED("\". Because: ")<< std::endl;
+    throw GradeTooLowException();
+  }
+  std::cout << FGRN(BOLD(_name)) << FGRN(", successfully executed ") << FGRN(UNDL(form.getFormName())) << std::endl;
   return true;
 }
 

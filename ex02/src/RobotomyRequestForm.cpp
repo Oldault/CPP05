@@ -6,7 +6,7 @@
 /*   By: svolodin <svolodin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 10:24:33 by oldault           #+#    #+#             */
-/*   Updated: 2024/05/14 17:19:01 by svolodin         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:35:27 by svolodin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,9 @@ void  drillAway(const std::string& target)
   return ;
 }
 
-void RobotomyRequestForm::performExecuteAction(const Bureaucrat& b)
+void RobotomyRequestForm::performExecuteAction(Bureaucrat& b)
 {
-  std::cout << FGRN(BOLD(b.getName()))
-  << FGRN(", is now executing ")
-  << FGRN(UNDL(getFormName())) << std::endl;
-
+  (void)b;
   drillAway(_target);
 
   return ;
