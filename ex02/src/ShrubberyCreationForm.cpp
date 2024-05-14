@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oldault <oldault@student.42.fr>            +#+  +:+       +#+        */
+/*   By: svolodin <svolodin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 10:24:33 by oldault           #+#    #+#             */
-/*   Updated: 2024/05/11 14:23:51 by oldault          ###   ########.fr       */
+/*   Updated: 2024/05/14 15:27:15 by svolodin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@ ShrubberyCreationForm::~ShrubberyCreationForm() throw()
 void  growShrubs(const std::string& target)
 {
   std::ofstream shrubFile;
-  shrubFile.open(target + "_shrubbery");
-
+  std::string filename = target + "_shrubbery";
+  
+  shrubFile.open(filename.c_str());
   shrubFile << "🌳🌴🌲\n";
   shrubFile.close();
 
