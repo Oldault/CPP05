@@ -6,7 +6,7 @@
 /*   By: svolodin <svolodin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 10:57:20 by oldault           #+#    #+#             */
-/*   Updated: 2024/05/14 17:20:58 by svolodin         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:25:57 by svolodin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,6 @@ class AForm : public std::exception
     bool  isSigned( void ) const;
     int getSignGrade( void ) const;
     int getExecGrade( void ) const;
-    void  setToSigned( void );
-    bool  canBeSigned(Bureaucrat& b);
-    bool  canBeExecuted(const Bureaucrat& b);
     
     void  beSigned(Bureaucrat& b);
     void  execute(const Bureaucrat& b);

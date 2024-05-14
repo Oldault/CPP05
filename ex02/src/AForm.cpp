@@ -54,33 +54,18 @@ int AForm::getExecGrade( void ) const
   return _execGrade;
 }
 
-void AForm::setToSigned( void )
-{
-  _signed = true;
-}
-
-bool  AForm::canBeSigned(Bureaucrat& b)
-{
-  return (b.getGrade() >= getSignGrade());
-}
-
-bool  AForm::canBeExecuted(const Bureaucrat& b)
-{
-  return (b.getGrade() >= getExecGrade());
-}
-
 void AForm::beSigned(Bureaucrat& b)
 {
   if (b.signForm(*this)) {
-    setToSigned();
+    _signed = true;
   }
 }
 
 void AForm::execute(const Bureaucrat& b)
 {
-  if (!isSigned()) {
+  if (!_signed) {
     throw FormNotSignedException();
-  } else if (!canBeExecuted(b)) {
+  } else if (b.getGrade() > _execGrade) {
     throw GradeTooLowException();
   }
   performExecuteAction(b);
