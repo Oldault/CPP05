@@ -15,8 +15,6 @@
 #include <iomanip>
 #include <string>
 
-#define BOLDB(text) "\033[1m" << text << "\033[0m"
-
 AForm::AForm(const std::string& formName, int signGrade, int execGrade) :
   _formName(formName),
   _signed(false),
@@ -68,36 +66,45 @@ bool  AForm::canBeExecuted(const Bureaucrat& b)
 
 
 
-std::string AFormatText(const std::string& text)
+std::string formatTextF(const std::string& text)
 {
 	unsigned int maxLen = 18;
   return text.size() > maxLen ? text.substr(0, maxLen - 1) + '.' : text;
 }
 
-std::ostream& AFormatTable(std::ostream& os, const std::string& left, const std::string& right, int w)
+std::ostream& formatTableF(std::ostream& os, const std::string& left, const std::string& right, int w)
 {
-  os << "\t| " << std::left << std::setw(5) << BOLDB(left)
-    << std::right << std::setw(w) << right << " |" << std::endl;
+  os << "\t| " << std::left << std::setw(5) << BOLD(left)
+    << std::right << std::setw(w) << FCYN(right) << " |" << std::endl;
   
   return os;
 }
 
-std::ostream& AFormatTable(std::ostream& os, const std::string& left, int right, int w)
+std::ostream& formatTableF(std::ostream& os, const std::string& left, int right, int w)
 {
-  os << "\t| " << std::left << std::setw(5) << BOLDB(left)
-    << std::right << std::setw(w) << right << " |" << std::endl;
+  os << "\t| " << std::left << std::setw(5) << BOLD(left)
+    << std::right << std::setw(w) << FCYN(right) << " |" << std::endl;
   
   return os;
 }
 
-std::ostream& operator<<(std::ostream& os, const AForm& AForm)
+std::ostream& printHeaderF(std::ostream& os, std::string title)
 {
-  os << "\n\t+--------------------------------------+\n";
-  AFormatTable(os, "Form Name:", AFormatText(AForm.getFormName()), 25);
-  AFormatTable(os, "Form is signed:", (AForm.isSigned() ? "✅" : "❌"), 21);
-  AFormatTable(os, "Signing Grade:", AForm.getSignGrade(), 21);
-  AFormatTable(os, "Execution Grade:", AForm.getExecGrade(), 19);
-  os << "\t+--------------------------------------+\n\n";
+  os << "\t+-------------------------------------+\n";
+  os << "\t|\t" << FCYN(BOLD(title)) << "\t\t      |\n";
+  os << "\t+-------------------------------------+\n";
+
+  return os;
+}
+
+std::ostream& operator<<(std::ostream& os, const AForm& form)
+{
+  printHeaderF(os, "Data about Form");
+  formatTableF(os, "Form Name:", formatTextF(form.getFormName()), 34);
+  formatTableF(os, "Form is signed:", (form.isSigned() ? "✅" : "❌"), 30);
+  formatTableF(os, "Signing Grade:", form.getSignGrade(), 30);
+  formatTableF(os, "Execution Grade:", form.getExecGrade(), 28);
+  os << "\t+-------------------------------------+\n";
 
   return os;
 }

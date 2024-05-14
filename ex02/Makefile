@@ -1,7 +1,7 @@
 CXX				:= c++
 HEADERS		:= -Iinclude -Icolor
 CXXFLAGS	:= -Wall -Wextra -Werror -Wshadow -std=c++98
-TARGET		:= Form
+TARGET		:= Forms
 
 SRC_PATH	:= src
 OBJ_PATH	:= obj

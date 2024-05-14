@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RobotomyRequestForm.cpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oldault <oldault@student.42.fr>            +#+  +:+       +#+        */
+/*   By: svolodin <svolodin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 10:24:33 by oldault           #+#    #+#             */
-/*   Updated: 2024/05/11 14:24:36 by oldault          ###   ########.fr       */
+/*   Updated: 2024/05/14 16:00:14 by svolodin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ RobotomyRequestForm::~RobotomyRequestForm() throw()
 
 void  drillAway(const std::string& target)
 {
-  std::cout << BOLD(ITAL("💥 BRRRrrrrriiiiiiin zing Zing 💥")) << std::endl;
-  if (rand() <= RAND_MAX / 2) {
-    std::cout << BOLD( << target << ) << " has been Robotomized successfully 👍🏻" << std::endl;
+  std::cout << "\n\t" << BOLD(ITAL("💥 BRRRrrrrriiiiiiin zing Zing 💥")) << "\n\t";
+  if (rand() < RAND_MAX / 2) {
+    std::cout << BOLD(target) << " has been Robotomized successfully 👍🏻\n" << std::endl;
   } else {
-    std::cout << BOLD( << target << ) << " died during Robotomization 🫡" << std::endl;
+    std::cout << BOLD(target) << " died during Robotomization 🫡\n" << std::endl;
   }
 
   return ;
@@ -45,7 +45,9 @@ void  drillAway(const std::string& target)
 
 void  RobotomyRequestForm::beSigned(Bureaucrat& b)
 {
-  b.signForm(*this);
+  if (b.signForm(*this)) {
+    setToSigned();
+  }
     
   return ;
 }
@@ -57,7 +59,9 @@ void RobotomyRequestForm::execute(const Bureaucrat& b)
   } else if (!canBeExecuted(b)) {
     throw GradeTooLowException();
   }
-
+  std::cout << FGRN(BOLD(b.getName()))
+  << FGRN(", is now executing ")
+  << FGRN(UNDL(getFormName())) << std::endl;
   drillAway(_target);
 
   return ;

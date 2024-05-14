@@ -6,13 +6,13 @@
 /*   By: svolodin <svolodin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 13:39:57 by oldault           #+#    #+#             */
-/*   Updated: 2024/05/14 15:19:33 by svolodin         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:37:20 by svolodin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "Colors.h"
+#include "Colors.hpp"
 #include "Exceptions.hpp"
 
 #include <iostream>

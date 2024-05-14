@@ -3,23 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   Exceptions.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oldault <oldault@student.42.fr>            +#+  +:+       +#+        */
+/*   By: svolodin <svolodin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 09:53:05 by oldault           #+#    #+#             */
-/*   Updated: 2024/05/11 14:35:24 by oldault          ###   ########.fr       */
+/*   Updated: 2024/05/14 15:33:55 by svolodin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include <exception>
-#include <string>
+#include "Colors.hpp"
 
 class GradeTooHighException : public std::exception
 {
   public:
     virtual const char* what() const throw() {
-      return BRED(" Grade is too high - Maximum grade exceeded ");
+      static std::string msg = BRED(" Grade is too high - Maximum grade exceeded ");
+      return msg.c_str();
     }
 };
 
@@ -27,7 +28,8 @@ class GradeTooLowException : public std::exception
 {
   public:
     virtual const char* what() const throw() {
-      return BRED(" Grade is too low - Minimum grade not met ");
+      static std::string msg = BRED(" Grade is too low - Minimum grade not met ");
+      return msg.c_str();
     }
 };
 
@@ -35,7 +37,7 @@ class FormNotSignedException : public std::exception
 {
   public:
     virtual const char* what() const throw() {
-      return BRED(" The Form is not Signed yet - Please sign it before continuing ");
+      static std::string msg = BRED(" The Form is not Signed yet - Please sign it before continuing ");
+      return msg.c_str();
     }
 };
-
