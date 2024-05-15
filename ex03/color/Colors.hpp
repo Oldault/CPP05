@@ -2,6 +2,8 @@
 #define _COLORS_HPP
 
 #include <iostream>
+#include <sstream>
+#include <string>
 
 /* FOREGROUND */
 #define RST "\x1B[0m"
@@ -13,13 +15,13 @@
 #define KCYN "\x1B[36m"
 #define KWHT "\x1B[37m"
 
-#define FRED(x) (KRED + (x) + RST)
-#define FGRN(x) (KGRN + (x) + RST)
-#define FYEL(x) (KYEL + (x) + RST)
-#define FBLU(x) (KBLU + (x) + RST)
-#define FMAG(x) (KMAG + (x) + RST)
-#define FCYN(x) (KCYN + (x) + RST)
-#define FWHT(x) (KWHT + (x) + RST)
+#define FRED(x) (std::string(KRED) + toString(x) + RST)
+#define FGRN(x) (std::string(KGRN) + toString(x) + RST)
+#define FYEL(x) (std::string(KYEL) + toString(x) + RST)
+#define FBLU(x) (std::string(KBLU) + toString(x) + RST)
+#define FMAG(x) (std::string(KMAG) + toString(x) + RST)
+#define FCYN(x) (std::string(KCYN) + toString(x) + RST)
+#define FWHT(x) (std::string(KWHT) + toString(x) + RST)
 
 /* BACKGROUND */
 #define KRED40 "\x1B[41m"
@@ -30,17 +32,25 @@
 #define KCYN40 "\x1B[46m"
 #define KWHT40 "\x1B[47m"
 
-#define BRED(x) (KRED40 + (x) + RST)
-#define BGRN(x) (KGRN40 + (x) + RST)
-#define BYEL(x) (KYEL40 + (x) + RST)
-#define BBLU(x) (KBLU40 + (x) + RST)
-#define BMAG(x) (KMAG40 + (x) + RST)
-#define BCYN(x) (KCYN40 + (x) + RST)
-#define BWHT(x) (KWHT40 + (x) + RST)
+#define BRED(x) (std::string(KRED40) + toString(x) + RST)
+#define BGRN(x) (std::string(KGRN40) + toString(x) + RST)
+#define BYEL(x) (std::string(KYEL40) + toString(x) + RST)
+#define BBLU(x) (std::string(KBLU40) + toString(x) + RST)
+#define BMAG(x) (std::string(KMAG40) + toString(x) + RST)
+#define BCYN(x) (std::string(KCYN40) + toString(x) + RST)
+#define BWHT(x) (std::string(KWHT40) + toString(x) + RST)
 
 /* STYLES */
-#define BOLD(x) ("\x1B[1m" + (x) + "\x1B[0m")
-#define ITAL(x) ("\x1B[3m" + (x) + "\x1B[0m")
-#define UNDL(x) ("\x1B[4m" + (x) + "\x1B[0m")
+#define BOLD(x) (std::string("\x1B[1m") + toString(x) + "\x1B[0m")
+#define ITAL(x) (std::string("\x1B[3m") + toString(x) + "\x1B[0m")
+#define UNDL(x) (std::string("\x1B[4m") + toString(x) + "\x1B[0m")
 
-#endif  /* _COLORS_HPP */
+template <typename T>
+std::string toString(const T &value)
+{
+  std::stringstream ss;
+  ss << value;
+  return ss.str();
+}
+
+#endif /* _COLORS_HPP */
