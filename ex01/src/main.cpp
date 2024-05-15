@@ -6,7 +6,7 @@
 /*   By: svolodin <svolodin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 13:39:17 by oldault           #+#    #+#             */
-/*   Updated: 2024/05/12 10:05:19 by svolodin         ###   ########.fr       */
+/*   Updated: 2024/05/15 14:50:06 by svolodin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,15 @@
 #include "Form.hpp"
 
 int main()
-{
+{ 
+  /* Invalid sign/exec grade */
+  try {
+    Form form1("Fire Anne Hidalgo", 500, 200);
+  }
+  catch (const std::exception& e) {
+    std::cerr << BRED(e.what()) << "\n\n";
+  }
+
   /* Bureaucrats: */
   Bureaucrat midLevelBur("James", 20);
   std::cout << midLevelBur << std::endl;
@@ -30,7 +38,7 @@ int main()
     form1.beSigned(midLevelBur);
   }
   catch (const std::exception& e) {
-    std::cerr << e.what() << "\n\n";
+    std::cerr << BRED(e.what()) << "\n\n";
   }
   std::cout << form1 << std::endl;
 
@@ -39,7 +47,7 @@ int main()
     form1.beSigned(highLevelBur);
   }
   catch (const std::exception& e) {
-    std::cerr << e.what() << "\n\n";
+    std::cerr << BRED(e.what()) << "\n\n";
   }
   std::cout << form1 << std::endl;
 

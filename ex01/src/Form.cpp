@@ -6,20 +6,34 @@
 /*   By: svolodin <svolodin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 21:44:23 by oldault           #+#    #+#             */
-/*   Updated: 2024/05/14 15:32:17 by svolodin         ###   ########.fr       */
+/*   Updated: 2024/05/15 14:41:21 by svolodin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 #include "Bureaucrat.hpp"
-#include <iomanip>
-#include <string>
+#include "TableFormatter.hpp"
 
-Form::Form(const std::string& formName, int signGrade, int execGrade) :
+Form::Form(const std::string& formName, size_t signGrade, size_t execGrade) :
   _formName(formName),
   _signed(false),
   _signGrade(signGrade),
   _execGrade(execGrade)
+{
+  if (signGrade < 1 || execGrade < 1) {
+    throw Form::GradeTooHighException();
+  } else if (signGrade > 150 || execGrade > 150) {
+    throw Form::GradeTooLowException();
+  }
+
+  return ;
+}
+
+Form::Form(const Form &src) :
+  _formName(src._formName),
+  _signed(src._signed),
+  _signGrade(src._signGrade),
+  _execGrade(src._execGrade)
 {
   return ;
 }
@@ -27,6 +41,16 @@ Form::Form(const std::string& formName, int signGrade, int execGrade) :
 Form::~Form() throw()
 {
   return ;
+}
+
+const Form &Form::operator==(const Form &src)
+{
+  if (this != &src)
+  {
+    _signed = src._signed;
+  }
+
+  return *this;
 }
 
 std::string  Form::getFormName( void ) const
@@ -39,12 +63,12 @@ bool  Form::isSigned( void ) const
   return _signed;
 }
 
-int Form::getSignGrade( void ) const
+size_t Form::getSignGrade( void ) const
 {
   return _signGrade;
 }
 
-int Form::getExecGrade( void ) const
+size_t Form::getExecGrade( void ) const
 {
   return _execGrade;
 }
@@ -56,45 +80,13 @@ void  Form::beSigned(Bureaucrat& b)
   return ;
 }
 
-
-std::string formatTextF(const std::string& text)
-{
-	unsigned int maxLen = 18;
-  return text.size() > maxLen ? text.substr(0, maxLen - 1) + '.' : text;
-}
-
-std::ostream& formatTableF(std::ostream& os, const std::string& left, const std::string& right, int w)
-{
-  os << "\t| " << std::left << std::setw(5) << BOLD(left)
-    << std::right << std::setw(w) << FCYN(right) << " |" << std::endl;
-  
-  return os;
-}
-
-std::ostream& formatTableF(std::ostream& os, const std::string& left, int right, int w)
-{
-  os << "\t| " << std::left << std::setw(5) << BOLD(left)
-    << std::right << std::setw(w) << FCYN(right) << " |" << std::endl;
-  
-  return os;
-}
-
-std::ostream& printHeaderF(std::ostream& os, std::string title)
-{
-  os << "\t+-------------------------------------+\n";
-  os << "\t|\t" << FCYN(BOLD(title)) << "\t\t      |\n";
-  os << "\t+-------------------------------------+\n";
-
-  return os;
-}
-
 std::ostream& operator<<(std::ostream& os, const Form& form)
 {
-  printHeaderF(os, "Data about Form");
-  formatTableF(os, "Form Name:", formatTextF(form.getFormName()), 34);
-  formatTableF(os, "Form is signed:", (form.isSigned() ? "✅" : "❌"), 30);
-  formatTableF(os, "Signing Grade:", form.getSignGrade(), 30);
-  formatTableF(os, "Execution Grade:", form.getExecGrade(), 28);
+  printHeader(os, "Data about Form", 39);
+  formatTable(os, "Form Name:", formatText(form.getFormName()), 34);
+  formatTable(os, "Form is signed:", (form.isSigned() ? "✅" : "❌"), 30);
+  formatTable(os, "Signing Grade:", form.getSignGrade(), 30);
+  formatTable(os, "Execution Grade:", form.getExecGrade(), 28);
   os << "\t+-------------------------------------+\n";
 
   return os;
