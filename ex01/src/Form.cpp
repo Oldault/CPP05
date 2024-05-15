@@ -6,7 +6,7 @@
 /*   By: svolodin <svolodin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 21:44:23 by oldault           #+#    #+#             */
-/*   Updated: 2024/05/12 10:02:01 by svolodin         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:32:17 by svolodin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 #include "Bureaucrat.hpp"
 #include <iomanip>
 #include <string>
-
-#define BOLDB(text) "\033[1m" << text << "\033[0m"
 
 Form::Form(const std::string& formName, int signGrade, int execGrade) :
   _formName(formName),

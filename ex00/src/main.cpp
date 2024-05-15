@@ -6,7 +6,7 @@
 /*   By: svolodin <svolodin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 13:39:17 by oldault           #+#    #+#             */
-/*   Updated: 2024/05/12 09:44:40 by svolodin         ###   ########.fr       */
+/*   Updated: 2024/05/15 10:21:43 by svolodin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int main()
     std::cout << MyBureaucrat1 << std::endl;
   }
   catch(const std::exception& e) {
-    std::cerr << FRED("Exception caught: ") << e.what() << "\n\n";
+    std::cerr << FRED("Exception caught: ") << BRED(e.what()) << "\n\n";
   }
   
   /* Too "high" of a grade constructor */
@@ -33,7 +33,7 @@ int main()
     std::cout << MyBureaucrat11 << std::endl;
   }
   catch(const std::exception& e) {
-    std::cerr << FRED("Exception caught: ") << e.what() << "\n\n";
+    std::cerr << FRED("Exception caught: ") << BRED(e.what()) << "\n\n";
   }
   
   /* Too big of an incrementation */
@@ -49,7 +49,7 @@ int main()
     std::cout << MyBureaucrat2 << std::endl; //doesnt print
   }
   catch(const std::exception& e) {
-    std::cerr << FRED("Exception caught: ") << e.what() << "\n\n";
+    std::cerr << FRED("Exception caught: ") << BRED(e.what()) << "\n\n";
   }
   
   /* Too big of a decrementation */
@@ -65,7 +65,7 @@ int main()
     std::cout << MyBureaucrat21 << std::endl; //doesnt print either
   }
   catch(const std::exception& e) {
-    std::cerr << FRED("Exception caught: ") << e.what() << "\n\n";
+    std::cerr << FRED("Exception caught: ") << BRED(e.what()) << "\n\n";
   }
   
   return 0;
