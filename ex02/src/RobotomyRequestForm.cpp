@@ -6,13 +6,12 @@
 /*   By: svolodin <svolodin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 10:24:33 by oldault           #+#    #+#             */
-/*   Updated: 2024/05/14 17:35:27 by svolodin         ###   ########.fr       */
+/*   Updated: 2024/05/15 15:18:49 by svolodin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RobotomyRequestForm.hpp"
 #include "Bureaucrat.hpp"
-#include "Exceptions.hpp"
 
 #include <cstdlib>
 #include <ctime>
@@ -26,9 +25,24 @@ RobotomyRequestForm::RobotomyRequestForm(std::string target) :
   return ;
 }
 
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm & src) :
+  AForm(src)
+{
+  return ;
+}
+
 RobotomyRequestForm::~RobotomyRequestForm() throw()
 {
   return ;
+}
+
+RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm & src)
+{
+  if (this != &src) {
+    AForm::operator=(src);
+  }
+
+  return *this;
 }
 
 void  drillAway(const std::string& target)

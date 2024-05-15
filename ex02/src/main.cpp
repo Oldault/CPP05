@@ -6,7 +6,7 @@
 /*   By: svolodin <svolodin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 13:39:17 by oldault           #+#    #+#             */
-/*   Updated: 2024/05/14 15:46:40 by svolodin         ###   ########.fr       */
+/*   Updated: 2024/05/15 15:09:13 by svolodin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,21 +34,21 @@ int main() {
         shrubForm.beSigned(john);
         shrubForm.execute(john);
     } catch (std::exception& e) {
-        std::cout << e.what() << std::endl;
+        std::cout << BRED(e.what()) << std::endl;
     }
 
     try {
         robotForm.beSigned(jane);
         robotForm.execute(jane);
     } catch (std::exception& e) {
-        std::cout << e.what() << std::endl;
+        std::cout << BRED(e.what()) << std::endl;
     }
 
     try {
         pardonForm.beSigned(boss);
         pardonForm.execute(boss);
     } catch (std::exception& e) {
-        std::cout << e.what() << std::endl;
+        std::cout << BRED(e.what()) << std::endl;
     }
 
 

@@ -6,13 +6,13 @@
 /*   By: svolodin <svolodin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 10:24:33 by oldault           #+#    #+#             */
-/*   Updated: 2024/05/14 17:35:22 by svolodin         ###   ########.fr       */
+/*   Updated: 2024/05/15 15:19:09 by svolodin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
 #include "Bureaucrat.hpp"
-#include "Exceptions.hpp"
+
 #include <fstream>
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target) :
@@ -22,9 +22,24 @@ ShrubberyCreationForm::ShrubberyCreationForm(std::string target) :
   return ;
 }
 
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm & src) :
+  AForm(src)
+{
+  return ;
+}
+
 ShrubberyCreationForm::~ShrubberyCreationForm() throw()
 {
   return ;
+}
+
+ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm & src)
+{
+  if (this != &src) {
+    AForm::operator=(src);
+  }
+
+  return *this;
 }
 
 void  growShrubs(const std::string& target)

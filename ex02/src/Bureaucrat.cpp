@@ -6,27 +6,23 @@
 /*   By: svolodin <svolodin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 13:39:44 by oldault           #+#    #+#             */
-/*   Updated: 2024/05/14 17:31:35 by svolodin         ###   ########.fr       */
+/*   Updated: 2024/05/15 14:59:17 by svolodin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "TableFormatter.hpp"
 #include "AForm.hpp"
 
-#include <iomanip>
-#include <string>
-#include <iostream>
-#include <sstream>
-
 Bureaucrat::Bureaucrat(const std::string& name, int grade) :
-  _name(name)
+  _name(name),
+  _grade(grade)
 { 
   if (grade < HIGHEST_GRADE) {
-    throw GradeTooHighException();
+    throw Bureaucrat::GradeTooHighException();
   } else if (grade > LOWEST_GRADE) {
-    throw GradeTooLowException();
+    throw Bureaucrat::GradeTooLowException();
   }
-  _grade = grade;
 
   std::cout << FGRN("Bureaucrat named ")
   << FGRN(BOLD(_name)) << FGRN(", grade: ")
@@ -35,9 +31,26 @@ Bureaucrat::Bureaucrat(const std::string& name, int grade) :
   return ;
 }
 
+Bureaucrat::Bureaucrat(const Bureaucrat &src) :
+  _name(src._name),
+  _grade(src._grade)
+{
+  return ;
+}
+
 Bureaucrat::~Bureaucrat( void ) throw()
 {
   return ;
+}
+
+Bureaucrat  &Bureaucrat::operator=(const Bureaucrat &src)
+{
+  if (this != &src)
+  {
+    _grade = src._grade;
+  }
+
+  return *this;
 }
 
 const std::string Bureaucrat::getName( void ) const
@@ -50,69 +63,9 @@ int Bureaucrat::getGrade( void ) const
   return _grade;
 }
 
-bool  Bureaucrat::signForm(AForm& form)
-{
-  if (_grade > form.getSignGrade())
-  {
-    std::cerr << FRED(BOLD(_name)) << FRED(", couldn't sign \"") << FRED(UNDL( form.getFormName())) << FRED("\". Because: ")<< std::endl;
-    throw GradeTooLowException();
-  }
-  std::cout << FGRN(BOLD(_name)) << FGRN(", successfully signed ") << FGRN(UNDL(form.getFormName())) << std::endl;
-  return true;
-}
-
-bool  Bureaucrat::executeForm(AForm& form)
-{
-  if (_grade > form.getExecGrade())
-  {
-    std::cerr << FRED(BOLD(_name)) << FRED(", couldn't execute \"") << FRED(UNDL( form.getFormName())) << FRED("\". Because: ")<< std::endl;
-    throw GradeTooLowException();
-  }
-  std::cout << FGRN(BOLD(_name)) << FGRN(", successfully executed ") << FGRN(UNDL(form.getFormName())) << std::endl;
-  return true;
-}
-
-std::string formatText(const std::string& text)
-{
-	unsigned int maxLen = 18;
-  return text.size() > maxLen ? text.substr(0, maxLen - 1) + '.' : text;
-}
-
-std::ostream& formatTable(std::ostream& os, const std::string& left, const std::string& right, int w)
-{
-  os << "\t| " << std::left << std::setw(5) << BOLD(left)
-    << std::right << std::setw(w) << FMAG(right) << " |" << std::endl;
-  
-  return os;
-}
-
-std::ostream& formatTable(std::ostream& os, const std::string& left, int right, int w)
-{
-  os << "\t| " << std::left << std::setw(5) << BOLD(left)
-    << std::right << std::setw(w) << FMAG(right) << " |" << std::endl;
-  
-  return os;
-}
-
-std::ostream& printRow(std::ostream& os, const std::string& left, const std::string& right, int w)
-{
-  formatTable(os, left, right, w);
-
-  return os;
-}
-
-std::ostream& printHeader(std::ostream& os, std::string title)
-{
-  os << "\t+-------------------------------+\n";
-  os << "\t|\t" << FMAG(BOLD(title)) << "\t|\n";
-  os << "\t+-------------------------------+\n";
-
-  return os;
-}
-
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& b)
 {
-  printHeader(os, "Data about Bureaucrat");
+  printHeader(os, "Data about Bureaucrat", 33);
   formatTable(os, "Name", b.getName(), 34);
   formatTable(os, "Grade", b.getGrade(), 33);
   os << "\t+-------------------------------+\n";
@@ -124,12 +77,12 @@ std::ostream& operator<<(std::ostream& os, const Bureaucrat& b)
 void  Bureaucrat::incrementGrade( int amount )
 {
   if (static_cast<int>(_grade - amount) < HIGHEST_GRADE) {
-    throw GradeTooHighException();
+    throw Bureaucrat::GradeTooHighException();
   }
   std::ostringstream o;
   o << "(--) " << _grade << " -> " << (_grade - amount);
 
-  printHeader(std::cout, "Grade incrementation");
+  printHeader(std::cout, "Grade incrementation", 33);
   formatTable(std::cout, "Name", getName(), 34);
   printRow(std::cout, "Grade", o.str(), 33);
   std::cout << "\t+-------------------------------+\n";
@@ -139,15 +92,37 @@ void  Bureaucrat::incrementGrade( int amount )
 void  Bureaucrat::decrementGrade( int amount )
 {
   if (static_cast<int>(_grade + amount) > LOWEST_GRADE) {
-    throw GradeTooLowException();
+    throw Bureaucrat::GradeTooLowException();
   }
   std::ostringstream o;
   o << "(++) " << _grade << " -> " << (_grade + amount);
 
-  printHeader(std::cout, "Grade decrementation");
+  printHeader(std::cout, "Grade decrementation", 33);
   formatTable(std::cout, "Name", getName(), 34);
   printRow(std::cout, "Grade", o.str(), 33);
   std::cout << "\t+-------------------------------+\n";
 
   _grade += amount;
+}
+
+bool  Bureaucrat::signForm(AForm& form)
+{
+  if (_grade > form.getSignGrade())
+  {
+    std::cerr << FRED(BOLD(_name)) << FRED(", couldn't sign \"") << FRED(UNDL( form.getFormName())) << FRED("\". Because: ")<< std::endl;
+    throw Bureaucrat::GradeTooLowException();
+  }
+  std::cout << FGRN(BOLD(_name)) << FGRN(", successfully signed ") << FGRN(UNDL(form.getFormName())) << std::endl;
+  return true;
+}
+
+bool  Bureaucrat::executeForm(AForm& form)
+{
+  if (_grade > form.getExecGrade())
+  {
+    std::cerr << FRED(BOLD(_name)) << FRED(", couldn't execute \"") << FRED(UNDL( form.getFormName())) << FRED("\". Because: ")<< std::endl;
+    throw Bureaucrat::GradeTooLowException();
+  }
+  std::cout << FGRN(BOLD(_name)) << FGRN(", successfully executed ") << FGRN(UNDL(form.getFormName())) << std::endl;
+  return true;
 }
