@@ -6,7 +6,7 @@
 /*   By: svolodin <svolodin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 13:39:44 by oldault           #+#    #+#             */
-/*   Updated: 2024/05/15 10:29:01 by svolodin         ###   ########.fr       */
+/*   Updated: 2024/05/15 10:41:59 by svolodin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,26 @@ Bureaucrat::Bureaucrat(const std::string& name, int grade) :
   return ;
 }
 
+Bureaucrat::Bureaucrat(const Bureaucrat &src) :
+  _name(src._name),
+  _grade(src._grade)
+{
+  return ;
+}
+
 Bureaucrat::~Bureaucrat( void ) throw()
 {
   return ;
+}
+
+Bureaucrat  &Bureaucrat::operator=(const Bureaucrat &src)
+{
+  if (this != &src)
+  {
+    _grade = src._grade;
+  }
+
+  return *this;
 }
 
 const std::string Bureaucrat::getName( void ) const

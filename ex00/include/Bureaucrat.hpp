@@ -6,7 +6,7 @@
 /*   By: svolodin <svolodin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 13:39:57 by oldault           #+#    #+#             */
-/*   Updated: 2024/05/15 10:29:15 by svolodin         ###   ########.fr       */
+/*   Updated: 2024/05/15 10:35:43 by svolodin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,41 +21,46 @@
 #include <stdexcept>
 #include <exception>
 
-# define HIGHEST_GRADE 1
-# define LOWEST_GRADE 150
+#define HIGHEST_GRADE 1
+#define LOWEST_GRADE 150
 
 class Bureaucrat
 {
-  private:
-    const std::string _name;
-    unsigned int _grade;
+private:
+  const std::string _name;
+  unsigned int _grade;
 
+public:
+  Bureaucrat(const std::string &name, int grade);
+  Bureaucrat(const Bureaucrat &src);
+  ~Bureaucrat(void) throw();
+
+  Bureaucrat &operator=(const Bureaucrat &src);
+
+  const std::string getName(void) const;
+  int getGrade(void) const;
+
+  void incrementGrade(int amount);
+  void decrementGrade(int amount);
+
+  /* Exceptions */
+  class GradeTooHighException : public std::exception
+  {
   public:
-    Bureaucrat(const std::string& name, int grade);
-    ~Bureaucrat( void ) throw();
-    
-    const std::string getName( void ) const;
-    int getGrade( void ) const;
-
-    void  incrementGrade(int amount);
-    void  decrementGrade(int amount);
-
-    /* Exceptions */
-    class GradeTooHighException : public std::exception
+    const char *what() const throw()
     {
-      public:
-        const char* what() const throw() {
-          return (" Grade is too high - Maximum grade exceeded ");
-        }
-    };
+      return (" Grade is too high - Maximum grade exceeded ");
+    }
+  };
 
-    class GradeTooLowException : public std::exception
+  class GradeTooLowException : public std::exception
+  {
+  public:
+    const char *what() const throw()
     {
-      public:
-        const char* what() const throw() {
-          return (" Grade is too low - Minimum grade not met ");
-        }
-    };
+      return (" Grade is too low - Minimum grade not met ");
+    }
+  };
 };
 
-std::ostream& operator<<(std::ostream& os, const Bureaucrat& b);
+std::ostream &operator<<(std::ostream &os, const Bureaucrat &b);
