@@ -6,9 +6,12 @@
 /*   By: svolodin <svolodin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 10:24:49 by oldault           #+#    #+#             */
-/*   Updated: 2024/05/15 15:15:41 by svolodin         ###   ########.fr       */
+/*   Updated: 2024/05/15 17:14:08 by svolodin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef __PRESIDENTIALPARDONFORM_HPP__
+#define __PRESIDENTIALPARDONFORM_HPP__
 
 #include "AForm.hpp"
 
@@ -28,3 +31,5 @@ class PresidentialPardonForm :
   protected:
     virtual void performExecuteAction(Bureaucrat& b);
 };
+
+#endif // __PRESIDENTIALPARDONFORM_H__

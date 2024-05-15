@@ -6,9 +6,12 @@
 /*   By: svolodin <svolodin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 10:24:49 by oldault           #+#    #+#             */
-/*   Updated: 2024/05/15 15:18:22 by svolodin         ###   ########.fr       */
+/*   Updated: 2024/05/15 17:14:05 by svolodin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef __ROBOTOMYREQUESTFORM_HPP__
+#define __ROBOTOMYREQUESTFORM_HPP__
 
 #include "AForm.hpp"
 
@@ -28,3 +31,5 @@ class RobotomyRequestForm :
   protected:
     virtual void performExecuteAction(Bureaucrat& b);
 };
+
+#endif // __ROBOTOMYREQUESTFORM_H__

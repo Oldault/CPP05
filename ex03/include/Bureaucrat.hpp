@@ -6,11 +6,12 @@
 /*   By: svolodin <svolodin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 13:39:57 by oldault           #+#    #+#             */
-/*   Updated: 2024/05/15 14:54:40 by svolodin         ###   ########.fr       */
+/*   Updated: 2024/05/15 17:12:52 by svolodin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#ifndef __BUREAUCRAT_HPP__
+#define __BUREAUCRAT_HPP__
 
 #include "Colors.hpp"
 
@@ -51,8 +52,7 @@ class Bureaucrat
     class GradeTooHighException : public std::exception
     {
     public:
-      const char *what() const throw()
-      {
+      const char *what() const throw() {
         return (" Grade is too high - Maximum grade exceeded ");
       }
     };
@@ -60,11 +60,12 @@ class Bureaucrat
     class GradeTooLowException : public std::exception
     {
     public:
-      const char *what() const throw()
-      {
+      const char *what() const throw() {
         return (" Grade is too low - Minimum grade not met ");
       }
     };
 };
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& b);
+
+#endif // __BUREAUCRAT_H__

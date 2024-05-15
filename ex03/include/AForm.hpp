@@ -6,11 +6,12 @@
 /*   By: svolodin <svolodin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 10:57:20 by oldault           #+#    #+#             */
-/*   Updated: 2024/05/15 15:16:21 by svolodin         ###   ########.fr       */
+/*   Updated: 2024/05/15 17:14:15 by svolodin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#ifndef __AFORM_HPP__
+#define __AFORM_HPP__
 
 #include <string>
 
@@ -41,27 +42,24 @@ class AForm
     /* Exceptions */
     class GradeTooHighException : public std::exception
     {
-    public:
-      const char *what() const throw()
-      {
-        return (" Grade is too high - Maximum grade exceeded ");
-      }
+      public:
+        const char *what() const throw() {
+          return (" Grade is too high - Maximum grade exceeded ");
+        }
     };
     class GradeTooLowException : public std::exception
     {
-    public:
-      const char *what() const throw()
-      {
-        return (" Grade is too low - Minimum grade not met ");
-      }
+      public:
+        const char *what() const throw() {
+          return (" Grade is too low - Minimum grade not met ");
+        }
     };
     class FormNotSignedException : public std::exception
     {
-    public:
-      const char *what() const throw()
-      {
-        return (" The Form is not Signed yet - Please sign it before continuing ");
-      }
+      public:
+        const char *what() const throw() {
+          return (" The Form is not Signed yet - Please sign it before continuing ");
+        }
     };
 
   protected:
@@ -69,3 +67,5 @@ class AForm
 };
 
 std::ostream& operator<<(std::ostream& os, const AForm& form);
+
+#endif // __AFORM_H__
